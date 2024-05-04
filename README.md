@@ -19,3 +19,12 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/super_duper>.
 
+### Start and stop supervisor at will
+
+```
+// start elixir without supervisor
+iex -S mix run --no-start
+
+{:ok, pid} = SuperDuper.Application.start :duper, []
+Supervisor.stop pid
+```

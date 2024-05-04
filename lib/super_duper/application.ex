@@ -4,17 +4,20 @@ defmodule SuperDuper.Application do
   @moduledoc false
 
   use Application
+  alias SuperDuper.Server
 
   @impl true
   def start(_type, _args) do
+    IO.puts(">>>> Starting Super-duper Super-visor <<<<")
     children = [
-      # Starts a worker by calling: SuperDuper.Worker.start_link(arg)
-      # {SuperDuper.Worker, arg}
+      {Server, :superdave},
+      {Server, :superman},
+      {Server, :supermario}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: SuperDuper.Supervisor]
+    opts = [strategy: :rest_for_one, name: SuperDuper.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
